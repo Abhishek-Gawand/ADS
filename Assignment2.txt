@@ -1,0 +1,188 @@
+1. Print 1 to n without using loops
+=
+class Print {
+
+    public static void printWithoutLoop(int n) {
+        if (n <= 10) {
+            System.out.println(n);
+            printWithoutLoop(n + 1);
+        }
+    }
+
+    public static void main(String[] args){
+        Print.printWithoutLoop(1);
+    }
+}
+
+
+2. Sum of natural numbers using recursion
+=
+class Program1 { 
+  
+    public static int Sum(int n) 
+    { 
+        if (n <= 1) 
+            return n; 
+        return n + Sum(n - 1); 
+    } 
+      
+     public static void main(String args[]) 
+    { 
+        int n = 5; 
+        System.out.println(Sum(n)); 
+    } 
+} 
+
+
+3. Mean of Array using Recursion
+=
+class CalcMean 
+{ 
+  
+    static float findMean(int A[], int N) 
+    { 
+        if (N == 1) 
+            return (float)A[N-1]; 
+        else
+            return ((float)(findMean(A, N-1)*(N-1) + 
+                                        A[N-1]) / N); 
+    } 	
+      
+       public static void main (String[] args)  
+    { 
+        float Mean = 0; 
+        int A[] = {1, 2, 3, 4, 5}; 
+        int N = A.length; 
+        System.out.println(findMean(A, N)); 
+    } 
+} 
+
+
+3. Sum of array elements using recursion
+=
+class Test { 
+    static int arr[] = { 1, 2, 3, 4, 5 }; 
+  
+    static int findSum(int A[], int N) 
+    { 
+        if (N <= 0) 
+            return 0; 
+        return (findSum(A, N - 1) + A[N - 1]); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        System.out.println(findSum(arr, arr.length)); 
+    } 
+} 
+
+
+4. Decimal to binary number using recursion
+=
+class Program 
+{
+     
+static int find(int decimal_number)
+    {
+        if (decimal_number == 0) 
+            return 0; 
+             
+        else
+         
+        return (decimal_number % 2 + 10 * 
+                find(decimal_number / 2));
+    }
+     
+public static void main(String args[])
+{
+    int decimal_number = 10;
+    System.out.println(find(decimal_number));
+}
+ 
+}
+
+
+5. Sum of digit of a number using recursion
+=
+class Program2
+{
+    static int sum_of_digit(int n)
+    { 
+        if (n == 0)
+            return 0;
+        return (n % 10 + sum_of_digit(n / 10));
+    }
+ 
+        public static void main(String args[])
+    {
+        int num = 12345;
+        int result = sum_of_digit(num);
+        System.out.println("Sum of digits in " + 
+                           num + " is " + result);
+    }
+}
+ 
+
+6. Print reverse of a string using recursion
+=
+class StringReverse
+{
+        void reverse(String str)
+    {
+        if ((str==null)||(str.length() <= 1))
+           System.out.println(str);
+        else
+        {
+            System.out.print(str.charAt(str.length()-1));
+            reverse(str.substring(0,str.length()-1));
+        }
+    }
+     
+     public static void main(String[] args) 
+    {
+        String str = "Program";
+        StringReverse obj = new StringReverse();
+        obj.reverse(str);
+    }    
+}
+
+
+7. Program for length of a string using recursion
+=
+public class StringLength{
+ 
+ private static int recLen(String str) 
+    {
+ 
+                if (str.equals(""))
+            return 0;
+        else
+            return recLen(str.substring(1)) + 1;
+    }
+ 
+       public static void main(String[] args) 
+    {
+    
+        String str ="Welcome";
+        System.out.println(recLen(str));
+    }
+}
+
+
+8. Tail recursion to calculate sum of array elements.
+=
+class Test { 
+    static int arr[] = { 1, 2, 3, 4, 5 }; 
+  
+    static int findSum(int A[], int N) 
+    { 
+        if (N <= 0) 
+            return 0; 
+        return (findSum(A, N - 1) + A[N - 1]); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        System.out.println(findSum(arr, arr.length)); 
+    } 
+} 
