@@ -1,0 +1,538 @@
+1.Implement singly linked list in java
+= 
+class LinkedList{
+	
+	Node head;
+	
+	static class Node{
+		Node next;
+		int data;
+		
+		Node(int data)
+		{
+			this.data = data;
+			this.next = null;
+		}
+		
+	}
+	
+	void display()
+	{
+		Node new_node = head;
+		
+		while(head != null)
+		{
+			System.out.print(new_node.data+"-->");
+			new_node = new_node.next;
+		}
+	}
+	
+	public static void main(String args[])
+	{
+		LinkedList L1 = new LinkedList();
+		
+		L1.head = new Node (5);
+		Node second = new Node (10);
+		Node third = new Node(15);
+		Node fourth = new Node(20);
+		
+		L1.head.next = second;
+		second.next = third;
+		third.next = fourth;
+		
+		L1.display();
+	}
+}
+
+==============================================================================================================
+		
+2.Implement Doubly linked list in java
+=
+class LinkedList{
+	
+Node head;
+
+static class Node{
+	Node next;
+	Node prev;
+	int data;
+	
+	Node(int data)
+	{
+		this.next = null;
+		this.prev = null;
+		this.data = data;
+	}
+}
+
+void insert(int new_data)
+{
+	Node new_node = new Node(new_data);
+	new_node.next = head;
+	new_node.prev = null;
+	if(head != null)
+	
+		head.prev = new_node;
+		head = new_node;
+	
+}
+
+void display(Node n)
+{
+	Node p = null;
+	System.out.println("Forward direction");
+	while(n != null)
+	{
+		System.out.print(n.data+"-->");
+		p=n;
+		n = n.next;
+	}
+	System.out.println();
+	
+	System.out.println("Backward direction");
+	while(p != null)
+	{
+		System.out.print(p.data+"<--");
+		p = p.prev;
+	}
+}
+
+public static void main(String args[])
+{
+	LinkedList L1 = new LinkedList();
+	L1.insert(5);
+	L1.insert(10);
+	L1.insert(15);
+	L1.insert(20);
+	
+	L1.display(L1.head);
+}
+
+}
+
+============================================================================================================
+		
+3.How to reverse a linked list in java
+=
+class LinkedList{
+	
+	Node head;
+	
+	static class Node{
+		Node next;
+		int data;
+		
+		public Node(int data)
+		{
+			this.data = data;
+			this.next = null;
+		}
+	}
+	
+	void insert(int data)
+	{
+		Node new_node = new Node(data);
+		if (head == null)
+		{
+			head = new_node;
+			return;
+		}
+		
+		else
+		{new_node.next = head;
+	     head = new_node;
+		}		 
+	}
+	
+	void reverse ()
+	{ 
+		Node prev = null;
+		Node current = head;
+		Node next = null;
+		
+		while(current != null)
+		{
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+	}
+	
+	void display()
+	{
+		Node current = head;
+		while(current != null)
+		{System.out.print(current.data+"--");
+		current = current.next;
+	}
+	System.out.println();
+	
+
+public static void main(String[] args){
+
+	LinkedList L1 = new LinkedList();
+	L1.insert(5);
+	L1.insert(10);
+	L1.insert(15);
+	
+	System.out.println("Original List");
+	L1.display();
+	
+	L1.reverse();
+	System.out.println("Reversed List");
+	L1.display();
+   }
+  }
+ }
+
+===================================================================================================================================	
+	
+4.How to merge two linked list in sorted order in java
+=
+class Node {
+    int data;
+    Node next;
+    
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}
+
+class MergeLists {
+    Node head;
+
+    public void addToTheLast(Node node) {
+        if (head == null) {
+            head = node;
+        } else {
+            Node temp = head;
+            while (temp.next != null)
+                temp = temp.next;
+            temp.next = node;
+        }
+    }
+
+    void printList() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    // Function to merge two sorted linked lists
+    Node sortedMerge(Node l1, Node l2) {
+        if (l1 == null)
+            return l2;
+        if (l2 == null)
+            return l1;
+
+        Node result;
+        if (l1.data <= l2.data) {
+            result = l1;
+            result.next = sortedMerge(l1.next, l2);
+        } else {
+            result = l2;
+            result.next = sortedMerge(l1, l2.next);
+        }
+        return result;
+    }
+
+    public static void main(String args[]) {
+
+        MergeLists llist1 = new MergeLists();
+        MergeLists llist2 = new MergeLists();
+
+        llist1.addToTheLast(new Node(5));
+        llist1.addToTheLast(new Node(10));
+        llist1.addToTheLast(new Node(15));
+
+        llist2.addToTheLast(new Node(2));
+        llist2.addToTheLast(new Node(3));
+        llist2.addToTheLast(new Node(20));
+
+        llist1.head = llist1.sortedMerge(llist1.head, llist2.head);
+        System.out.println("Merged Linked List is:");
+        llist1.printList();
+    }
+}
+
+====================================================================================================================================
+5.How to find middle element of linked list in java
+=
+class Node  
+{  
+int num;  
+Node next;  
+// constructor of the class Node  
+Node(int n)  
+{  
+this.num = n;  
+this.next = null;  
+}  
+}  
+class TwoPointerExample1  
+{  
+public void findNode(Node n)  
+{  
+if(n == null)   
+{  
+return;  
+}  
+Node slow = n;  
+Node fast = n;  
+while(fast != null && fast.next != null)  
+{  
+// fast pointer is taking two steps at a time  
+fast = fast.next.next;  
+// slow pointer is taking one step at a time  
+slow = slow.next;  
+}  
+System.out.println("The middle node of the linked list is: " + slow.num);  
+}  
+// main method  
+public static void main(String argvs[])  
+{  
+// head node of the linked list  
+Node h = new Node(13);  
+// remaining node of the linked list  
+h.next = new Node(17);  
+h.next.next = new Node(90);  
+h.next.next.next = new Node(76);  
+h.next.next.next.next = new Node(45);  
+h.next.next.next.next.next = new Node(32);  
+h.next.next.next.next.next.next = new Node(10);  
+// creating an object of the class TwoPointerExample1  
+TwoPointerExample1 obj = new TwoPointerExample1();  
+// invoking the method findNode()  
+obj.findNode(h);  
+}  
+}  
+
+=================================================================================================================
+
+6.How to detect a loop in linked list in java
+=
+class LinkedList {
+
+  // create an object of Node class
+  // represent the head of the linked list
+  Node head;
+
+  // static inner class
+  static class Node {
+    int value;
+
+    // connect each node to next node
+    Node next;
+
+    Node(int d) {
+      value = d;
+      next = null;
+    }
+  }
+
+  // check if loop is present
+  public boolean checkLoop() {
+
+    // create two references at start of LinkedList
+    Node first = head;
+    Node second = head;
+
+    while(first != null && first.next !=null) {
+
+      // move first reference by 2 nodes
+      first = first.next.next;
+
+      // move second reference by 1 node
+      second = second.next;
+
+      // if two references meet
+      // then there is a loop
+      if(first == second) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public static void main(String[] args) {
+
+    // create an object of LinkedList
+    LinkedList linkedList = new LinkedList();
+
+    // assign values to each linked list node
+    linkedList.head = new Node(1);
+    Node second = new Node(2);
+    Node third = new Node(3);
+    Node fourth = new Node(4);
+
+    // connect each node of linked list to next node
+    linkedList.head.next = second;
+    second.next = third;
+    third.next = fourth;
+
+    // make loop in LinkedList
+    fourth.next = second;
+
+    // printing node-value
+    System.out.print("LinkedList: ");
+    int i = 1;
+    while (i <= 4) {
+      System.out.print(linkedList.head.value + " ");
+      linkedList.head = linkedList.head.next;
+      i++;
+    }
+
+    // call method to check loop
+    boolean loop = linkedList.checkLoop();
+    if(loop) {
+      System.out.println("\nThere is a loop in LinkedList.");
+    }
+    else {
+      System.out.println("\nThere is no loop in LinkedList.");
+    }
+  }
+}
+
+==============================================================================================================================
+
+7.Find start node of loop in linkedlist
+=
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    void insert(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    Node findStartNode() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                break;
+            }
+        }
+
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+
+        slow = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        LinkedList L1 = new LinkedList();
+        L1.insert(5);
+        L1.insert(10);
+        L1.insert(15);
+        L1.insert(20);
+        L1.insert(25);
+
+        L1.head.next.next.next.next.next = L1.head.next;
+
+        Node startNode = L1.findStartNode();
+        if (startNode != null) {
+            System.out.println("Start node of the linked list is: " + startNode.data);
+        } else {
+            System.out.println("No loop found in the linked list.");
+        }
+    }
+}
+
+==============================================================================================================================
+
+8.How to find nth element from end of linked list
+=
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    // Method to insert a new node at the beginning
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Method to find the nth element from the end of the linked list
+    public int findNthFromEnd(int n) {
+        Node fast = head;
+        Node slow = head;
+
+        // Move fast pointer to the nth node from the beginning
+        for (int i = 0; i < n; i++) {
+            if (fast == null) {
+                // If n is greater than the number of nodes in the list, return -1
+                return -1;
+            }
+            fast = fast.next;
+        }
+
+        // Move both pointers simultaneously until fast reaches the end of the list
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        // At this point, slow will be pointing to the nth node from the end
+        return slow.data;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        list.insert(5);
+
+        int n = 2; // Find the 2nd element from the end
+        int nthFromEnd = list.findNthFromEnd(n);
+        if (nthFromEnd != -1) {
+            System.out.println("The " + n + "th element from the end is: " + nthFromEnd);
+        } else {
+            System.out.println("The list is shorter than " + n + " elements.");
+        }
+    }
+}
+
