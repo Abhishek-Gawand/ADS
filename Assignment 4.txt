@@ -1,0 +1,664 @@
+1.Doubly Linked List Insertion in java
+=
+class LinkedList{
+	
+	Node head;
+	
+	static class Node{
+		int data;
+		Node next;
+		Node prev;
+		
+		 Node(int data)
+		{
+			this.data = data;
+			this.next = null;
+			this.prev = null;
+		}
+	}
+	
+	void insert(int new_data)
+	{
+		Node new_node = new Node(new_data);
+		new_node.next = head;
+		new_node.prev = null;
+		if(head != null)
+			head.prev = new_node;
+		head = new_node;	
+	}
+	
+	void display(Node n)
+	{
+		Node p = null;
+		System.out.println("Forward direction");
+		while (n != null)
+		{
+			System.out.print(n.data+"-->");
+		p=n;
+		n=n.next;}
+	
+	System.out.println();
+	
+	
+	System.out.println("Backward direction");
+	while(p != null)
+	{
+		System.out.print(p.data+"<--");
+	p=p.prev;
+	}
+}
+	
+	public static void main(String args[])
+	{
+		LinkedList L1 = new LinkedList();
+		
+		L1.insert(5);
+		L1.insert(10);
+		L1.insert(15);
+		
+		L1.display(L1.head);
+	}	
+}	
+	
+===================================================================================================================================
+	
+2.Reverse a Doubly Linked List in java
+=
+class Node{
+	int data;
+	Node prev;
+	Node next;
+	
+	Node(int data)
+	{
+		this.data = data;
+		this.prev = null;
+		this.next = null;
+	}
+}
+
+class DoublyLinkedlist{
+	Node head;
+	
+	void reverse()
+	{
+		Node current = head;
+		Node prev = null;
+		Node next;
+		
+		while (current != null)
+			next = current.next;
+		current.next = prev;
+		current.prev = next;
+		
+		prev = current;
+		current = next;
+		
+	}
+	head = prev;
+}
+
+void printList(Node node) {
+        Node last = null;
+        System.out.println("Forward direction:");
+        while (node != null) {
+            System.out.print(node.data + " ");
+            last = node;
+            node = node.next;
+        }
+        System.out.println();
+        System.out.println("Backward direction:");
+        while (last != null) {
+            System.out.print(last.data + " ");
+            last = last.prev;
+        }
+        System.out.println();
+    }
+	
+	void insert(int newData) {
+        Node newNode = new Node(newData);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node last = head;
+        while (last.next != null) {
+            last = last.next;
+        }
+        last.next = newNode;
+        newNode.prev = last;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+        dll.insert(1);
+        dll.insert(2);
+        dll.insert(3);
+        dll.insert(4);
+
+        System.out.println("Original list:");
+        dll.printList(dll.head);
+
+        dll.reverse();
+
+        System.out.println("Reversed list:");
+        dll.printList(dll.head);
+    }
+}
+
+========================================================================================================================================
+
+3.Delete a node in a Doubly Linked List in java
+=
+class ListNode {
+    int val;
+    ListNode prev;
+    ListNode next;
+    
+    public ListNode(int val) {
+        this.val = val;
+    }
+}
+
+public class DoublyLinkedList {
+    ListNode head;
+    
+    public void deleteNode(ListNode node) {
+        if (node == null)
+            return;
+
+        // If the node to be deleted is the head node
+        if (node == head) {
+            head = node.next;
+        }
+
+        // Update next pointer of previous node if node is not the last node
+        if (node.next != null) {
+            node.next.prev = node.prev;
+        }
+
+        // Update prev pointer of next node if node is not the first node
+        if (node.prev != null) {
+            node.prev.next = node.next;
+        }
+
+        // Clean up references of the deleted node
+        node.prev = null;
+        node.next = null;
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+
+        // Create a sample doubly linked list
+        list.head = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+
+        list.head.next = second;
+        second.prev = list.head;
+        second.next = third;
+        third.prev = second;
+
+        // Delete the node with value 2
+        list.deleteNode(second);
+
+        // Print the list after deletion
+        ListNode current = list.head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+    }
+}
+
+================================================================================================================================
+
+4.Program to find length of Doubly Linked List in java
+=
+class ListNode {
+    int val;
+    ListNode prev;
+    ListNode next;
+    
+    public ListNode(int val) {
+        this.val = val;
+    }
+}
+
+public class DoublyLinkedList {
+    ListNode head;
+    
+    public int length() {
+        int count = 0;
+        ListNode current = head;
+        
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        
+        return count;
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+
+        // Create a sample doubly linked list
+        list.head = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+
+        list.head.next = second;
+        second.prev = list.head;
+        second.next = third;
+        third.prev = second;
+
+        // Find the length of the doubly linked list
+        int length = list.length();
+        System.out.println("Length of the doubly linked list: " + length);
+    }
+}
+
+=======================================================================================================================================================
+
+5.Find the largest node in Doubly linked list in java
+=
+class ListNode {
+    int val;
+    ListNode prev;
+    ListNode next;
+    
+    public ListNode(int val) {
+        this.val = val;
+    }
+}
+
+public class DoublyLinkedList {
+    ListNode head;
+    
+    public int findLargest() {
+        if (head == null) {
+            throw new RuntimeException("List is empty");
+        }
+        
+        int largest = head.val;
+        ListNode current = head.next;
+        
+        while (current != null) {
+            if (current.val > largest) {
+                largest = current.val;
+            }
+            current = current.next;
+        }
+        
+        return largest;
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+
+        // Create a sample doubly linked list
+        list.head = new ListNode(1);
+        ListNode second = new ListNode(5);
+        ListNode third = new ListNode(3);
+
+        list.head.next = second;
+        second.prev = list.head;
+        second.next = third;
+        third.prev = second;
+
+        // Find the largest node in the doubly linked list
+        int largest = list.findLargest();
+        System.out.println("Largest node in the doubly linked list: " + largest);
+    }
+}
+
+============================================================================================================================================
+
+6.Insert value in sorted way in a sorted doubly linked list in java
+=
+class ListNode {
+    int val;
+    ListNode prev;
+    ListNode next;
+    
+    public ListNode(int val) {
+        this.val = val;
+    }
+}
+
+public class SortedDoublyLinkedList {
+    ListNode head;
+
+    public void insertSorted(int val) {
+        ListNode newNode = new ListNode(val);
+
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        if (val <= head.val) {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+            return;
+        }
+
+        ListNode current = head;
+
+        while (current.next != null && current.next.val < val) {
+            current = current.next;
+        }
+
+        newNode.next = current.next;
+        if (current.next != null) {
+            current.next.prev = newNode;
+        }
+        current.next = newNode;
+        newNode.prev = current;
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        SortedDoublyLinkedList list = new SortedDoublyLinkedList();
+
+        // Insert values in sorted order
+        list.insertSorted(5);
+        list.insertSorted(2);
+        list.insertSorted(8);
+        list.insertSorted(4);
+
+        // Print the sorted doubly linked list
+        list.printList();
+    }
+
+    // Helper method to print the doubly linked list
+    public void printList() {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+    }
+}
+
+============================================================================================================================================
+
+7.Write tree traversals in java
+=
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class TreeTraversal {
+    // Preorder Traversal
+    public void preorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.val + " ");
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
+    }
+
+    // Inorder Traversal
+    public void inorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorderTraversal(root.left);
+        System.out.print(root.val + " ");
+        inorderTraversal(root.right);
+    }
+
+    // Postorder Traversal
+    public void postorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        postorderTraversal(root.left);
+        postorderTraversal(root.right);
+        System.out.print(root.val + " ");
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        // Construct a sample binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        TreeTraversal traversal = new TreeTraversal();
+
+        // Perform Preorder Traversal
+        System.out.println("Preorder Traversal:");
+        traversal.preorderTraversal(root);
+        System.out.println();
+
+        // Perform Inorder Traversal
+        System.out.println("Inorder Traversal:");
+        traversal.inorderTraversal(root);
+        System.out.println();
+
+        // Perform Postorder Traversal
+        System.out.println("Postorder Traversal:");
+        traversal.postorderTraversal(root);
+        System.out.println();
+    }
+}
+
+====================================================================================================================================
+
+8.Search a node in Binary Tree
+=
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class BinaryTreeSearch {
+    // Helper method to perform inorder traversal
+    private boolean inorderTraversal(TreeNode root, int target) {
+        if (root == null) {
+            return false;
+        }
+        
+        if (inorderTraversal(root.left, target)) {
+            return true;
+        }
+        
+        if (root.val == target) {
+            return true;
+        }
+        
+        return inorderTraversal(root.right, target);
+    }
+
+    // Method to search for a node in the binary tree
+    public boolean search(TreeNode root, int target) {
+        return inorderTraversal(root, target);
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        // Construct a sample binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+
+        BinaryTreeSearch searcher = new BinaryTreeSearch();
+
+        // Search for a node with value 5
+        int targetValue = 5;
+        boolean isFound = searcher.search(root, targetValue);
+        if (isFound) {
+            System.out.println("Node with value " + targetValue + " found in the binary tree.");
+        } else {
+            System.out.println("Node with value " + targetValue + " not found in the binary tree.");
+        }
+    }
+}
+
+================================================================================================================================
+
+9.Inorder Successor of a node in Binary Tree
+=
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class InorderSuccessorBinaryTree {
+    // Helper method to find the leftmost node in a subtree
+    private TreeNode findLeftmost(TreeNode node) {
+        if (node == null) {
+            return null;
+        }
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    // Method to find the inorder successor of a node in a binary tree
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
+        if (node == null) {
+            return null;
+        }
+
+        // Case 1: If the right subtree is not null
+        if (node.right != null) {
+            return findLeftmost(node.right);
+        }
+
+        // Case 2: If the right subtree is null
+        TreeNode successor = null;
+        while (root != null) {
+            if (node.val < root.val) {
+                successor = root;
+                root = root.left;
+            } else if (node.val > root.val) {
+                root = root.right;
+            } else {
+                break;
+            }
+        }
+
+        return successor;
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        // Construct a sample binary search tree
+        TreeNode root = new TreeNode(20);
+        root.left = new TreeNode(10);
+        root.right = new TreeNode(30);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(15);
+        root.right.left = new TreeNode(25);
+        root.right.right = new TreeNode(35);
+
+        InorderSuccessorBinaryTree tree = new InorderSuccessorBinaryTree();
+
+        // Find the inorder successor of a node with value 15
+        TreeNode node = root.left.right;
+        TreeNode successor = tree.inorderSuccessor(root, node);
+        if (successor != null) {
+            System.out.println("Inorder successor of " + node.val + " is " + successor.val);
+        } else {
+            System.out.println("Inorder successor of " + node.val + " not found.");
+        }
+    }
+}
+
+==========================================================================================================================================
+
+10.Print Head node of every node in Binary Tree
+=
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class BinaryTreeHeadNodes {
+    // Helper method to perform preorder traversal and print head nodes
+    private void preorder(TreeNode root, TreeNode head) {
+        if (root == null) {
+            return;
+        }
+        
+        // Print the head node of the current node
+        System.out.println("Head node of " + root.val + " is " + head.val);
+        
+        // Update head node for left and right children
+        preorder(root.left, root);
+        preorder(root.right, root);
+    }
+
+    // Method to print head nodes of every node in the binary tree
+    public void printHeadNodes(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        // Head node of root is itself
+        System.out.println("Head node of " + root.val + " is " + root.val);
+        
+        // Recursively print head nodes for left and right subtrees
+        preorder(root.left, root);
+        preorder(root.right, root);
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        // Construct a sample binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+
+        BinaryTreeHeadNodes printer = new BinaryTreeHeadNodes();
+
+        // Print head nodes of every node in the binary tree
+        printer.printHeadNodes(root);
+    }
+}
+
+========================================================================================================================================
